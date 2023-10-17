@@ -19,3 +19,16 @@
 body {
     font-family: apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Osygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
+
+.app {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    min-width: 100vh;
+}
+
+.app main{
+    background-color: var(--bg-color);
+    padding: 10px;
+    height: 100%;
+    overflow: auto;
+}

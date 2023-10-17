@@ -9,20 +9,26 @@ import PokemonMap from '../assets/pointer.png'
 const Footer = () => {
     return (
         <footer className={styles.footer}>
-            <Link className={styles.footerLink} to="/pokemons">
-                <img src={PokemonPic} alt="Pokeball" />
+            <Link
+                onClick={(event) =>event.preventDefault()}
+                className={styles.footerLink}
+                to="/pokemons">
+                <img className={styles.footerIcon} src={PokemonPic} alt="Pokeball" />
                 Pokemons
             </Link>
-            <Link className={styles.footerLink} to="/pokemons">
-                <img src={PokemonPok} alt="Items" />
+            <Link
+                onClick={(event) =>event.preventDefault()}
+                className={styles.footerLink}
+                to="/pokemons">
+                <img className={styles.footerIcon} src={PokemonPok} alt="Items" />
                 Items
             </Link>
             <Link
+                onClick={(event) =>event.preventDefault()}
                 className={styles.footerLink}
                 to="/pokemons"
-                onClick={(event) =>event.preventDefault()}
             >
-                <img src={PokemonMap} alt="Map" />
+                <img className={styles.footerIcon} src={PokemonMap} alt="Map" />
                 Map
             </Link>
         </footer>
