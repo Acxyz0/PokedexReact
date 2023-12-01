@@ -3,19 +3,12 @@
 import { PokemonDetails } from "../types/types";
 import { formatName } from "../utils/utils";
 
-// Primero, obtén una lista de todos los Pokémon
-export async function fetchAllPokemon(limit: number): Promise<any> {
-  const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${limit}`);
-
-  if (!response.ok) {
-    throw new Error(response.statusText);
-  }
-  return await response.json();
-}
-
-// Luego, obtén los detalles de un Pokémon específico
-export async function fetchPokemonDetails(url: string): Promise<PokemonDetails> {
-  const response = await fetch(url);
+export async function fetchPokemon(
+  pokemonName: string
+): Promise<PokemonDetails> {
+  const response = await fetch(
+    `https://pokeapi.co/api/v2/pokemon/${formatName(pokemonName)}`
+  );
 
   if (!response.ok) {
     throw new Error(response.statusText);
@@ -34,19 +27,3 @@ export async function fetchPokemonDetails(url: string): Promise<PokemonDetails> 
   };
   return pokemon;
 }
-
-// Ahora puedes usar estas funciones para obtener todos los Pokémon
-async function getAllPokemonDetails() {
-  const allPokemon = await fetchAllPokemon(898); // Ajusta este número según la cantidad de Pokémon que desees obtener
-
-  // Y luego obtener los detalles de cada uno
-  const allPokemonDetails = await Promise.all(
-    allPokemon.results.map((pokemon: any) => fetchPokemonDetails(pokemon.url))
-  );
-  return allPokemonDetails;
-}
-
-getAllPokemonDetails().then((allPokemonDetails) => {
-  console.log(allPokemonDetails);
-});
-
